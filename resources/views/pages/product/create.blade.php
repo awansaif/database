@@ -27,14 +27,23 @@
             {{ Session::get('message') }}
         </div>
         @endif
-        <form method="POST" action="{{ Route('product.store') }}">
+        <form method="POST" action="{{ Route('product.store') }}" enctype="multipart/form-data">
             @csrf
-
             <div class="form-group">
                 <label for="ARTICOLO">ARTICOLO</label>
                 <input type="text" class="form-control @error('article') is-invalid @enderror" name="article"
                     placeholder="ARTICOLO" value="{{ old('article') }}" required onfocus>
                 @error('article')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" required
+                    accept="image/*">
+                @error('image')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

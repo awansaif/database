@@ -43,8 +43,12 @@ class ProductController extends Controller
             'cuts'         => 'required',
             'price'        => 'required|numeric',
         ]);
-
+        $destination = 'product-images/';
+        $image = $request->file('image');
+        $image_new_name = time() . $image->getClientOriginalName();
+        $image->move($destination, $image_new_name);
         Product::create([
+            'image'   => env('APP_URL') . $destination . $image_new_name,
             'article' => $request->article,
             'description' => $request->description,
             'cuts'    => $request->cuts,

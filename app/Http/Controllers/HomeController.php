@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -24,7 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // Auth::logout();
-        return view('dashboard');
+
+        return view('dashboard', [
+            'users' => User::count(),
+            'products' => Product::count(),
+        ]);
     }
 }

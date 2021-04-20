@@ -41,7 +41,25 @@
                                 <p>Product</p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            {{-- active --}}
+                            <a href="{{ Route('user.index') }}"
+                                class="nav-link {{ Route::currentRouteName() == 'user.index' ? 'active' : ''  }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            {{-- active --}}
+                            <a href="{{ Route('logout') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
+
                 </li>
             </ul>
         </nav>

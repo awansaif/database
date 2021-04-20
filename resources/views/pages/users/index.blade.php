@@ -9,12 +9,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Products</h1>
+                <h1 class="m-0 text-dark">User</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ Route('dashboard') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Product</li>
+                    <li class="breadcrumb-item active">User</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -25,31 +25,25 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <a href="{{ Route('product.create') }}" class="btn btn-success float-right">Add Product</a>
+        <a href="{{ Route('user.create') }}" class="btn btn-success float-right">Add User</a>
         <br>
         <br>
         <table id="datatable" class="table table-bordered table-striped nowrap">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Image</th>
-                    <th>ARTICOLO</th>
-                    <th>DESCRIZIONE</th>
-                    <th>TAGLI</th>
-                    <th>PREZZO</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($products as $key => $product)
+                @forelse ($users as $key => $user)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>
-                        <img src="{{ $product->image }}" alt="" width="150px" height="150px">
-                    </td>
-                    <td>{{ $product->article }}</td>
-                    <td>{{ $product->description }}</td>
-                    <td>{{ $product->cuts }}</td>
-                    <td>{{ $product->price }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->remember_token }}</td>
                 </tr>
                 @empty
 
@@ -58,11 +52,9 @@
             <tfoot>
                 <tr>
                     <th>#</th>
-                    <th>Image</th>
-                    <th>ARTICOLO</th>
-                    <th>DESCRIZIONE</th>
-                    <th>TAGLI</th>
-                    <th>PREZZO</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
                 </tr>
             </tfoot>
         </table>

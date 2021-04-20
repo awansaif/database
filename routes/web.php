@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -18,5 +19,9 @@ Route::middleware('auth')->group(
 
         // product routes
         Route::resource('product', ProductController::class);
+
+        // user route
+        Route::get('logout', [UserController::class, 'logout'])->name('logout');
+        Route::resource('user', UserController::class);
     }
 );
