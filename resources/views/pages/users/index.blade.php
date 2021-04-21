@@ -28,6 +28,11 @@
         <a href="{{ Route('user.create') }}" class="btn btn-success float-right">Add User</a>
         <br>
         <br>
+        @if(Session::has('message'))
+        <div class="alert alert-success">
+            {{ Session::get('message') }}
+        </div>
+        @endif
         <table id="datatable" class="table table-bordered table-striped nowrap">
             <thead>
                 <tr>
@@ -35,6 +40,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,6 +50,15 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->remember_token }}</td>
+                    <td>
+                        <a href="{{ Route('user.edit',$user->id) }}" class="btn btn-success">Edit</a>
+                        <form action="{{ Route('user.destroy',$user->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
+
                 </tr>
                 @empty
 
@@ -55,6 +70,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>Action</th>
                 </tr>
             </tfoot>
         </table>

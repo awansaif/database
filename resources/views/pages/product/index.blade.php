@@ -28,7 +28,12 @@
         <a href="{{ Route('product.create') }}" class="btn btn-success float-right">Add Product</a>
         <br>
         <br>
-        <table id="datatable" class="table table-bordered table-striped nowrap">
+        @if(Session::has('message'))
+        <div class="alert alert-success">
+            {{ Session::get('message') }}
+        </div>
+        @endif
+        <table id="datatable" class="table table-bordered table-responsive table-striped">
             <thead>
                 <tr>
                     <th>#</th>
@@ -37,6 +42,7 @@
                     <th>DESCRIZIONE</th>
                     <th>TAGLI</th>
                     <th>PREZZO</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +56,14 @@
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->cuts }}</td>
                     <td>{{ $product->price }}</td>
+                    <td>
+                        <a href="{{ Route('product.edit',$product->id) }}" class="btn btn-success">Edit</a>
+                        <form action="{{ Route('product.destroy',$product->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Remove</button>
+                        </form>
+                    </td>
                 </tr>
                 @empty
 
@@ -63,6 +77,7 @@
                     <th>DESCRIZIONE</th>
                     <th>TAGLI</th>
                     <th>PREZZO</th>
+                    <th>Action</th>
                 </tr>
             </tfoot>
         </table>

@@ -72,9 +72,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('pages.users.update', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -84,9 +86,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'required|min:6'
+        ]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->remember_token = $request->password;
+        $user->save();
+
+
+        $request->session()->flash('message', 'User updated succesfully.');
+        return back();
     }
 
     /**
@@ -95,9 +110,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, User $user)
     {
-        //
+        $user->delete();
+
+        $request->session()->flash('message', 'User deleted succesfully.');
+        return back();
     }
 
     public function logout()
