@@ -33,47 +33,49 @@
             {{ Session::get('message') }}
         </div>
         @endif
-        <table id="datatable" class="table table-bordered table-striped nowrap">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($users as $key => $user)
-                <tr>
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->remember_token }}</td>
-                    <td>
-                        <a href="{{ Route('user.edit',$user->id) }}" class="btn btn-success">Edit</a>
-                        <form action="{{ Route('user.destroy',$user->id) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="submit" class="btn btn-danger">Remove</button>
-                        </form>
-                    </td>
+        <div class="table-responsive">
+            <table id="datatable" class="table table-bordered table-striped nowrap">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($users as $key => $user)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->remember_token }}</td>
+                        <td>
+                            <a href="{{ Route('user.edit',$user->id) }}" class="btn btn-success">Edit</a>
+                            <form action="{{ Route('user.destroy',$user->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Remove</button>
+                            </form>
+                        </td>
 
-                </tr>
-                @empty
+                    </tr>
+                    @empty
 
-                @endforelse
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Action</th>
-                </tr>
-            </tfoot>
-        </table>
+                    @endforelse
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->

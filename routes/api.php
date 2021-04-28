@@ -15,3 +15,4 @@ Route::post('login', [LoginController::class, 'login']);
 
 // product api
 Route::get('products', [ProductApiController::class, 'index']);
+Route::get('product', [ProductApiController::class, 'search_product']);

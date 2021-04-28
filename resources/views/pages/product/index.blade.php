@@ -33,7 +33,8 @@
             {{ Session::get('message') }}
         </div>
         @endif
-        <table id="datatable" class="table table-bordered table-responsive table-striped">
+        <div class="table-responsive">
+        <table id="datatable" class="table table-bordered  table-striped">
             <thead>
                 <tr>
                     <th>#</th>
@@ -81,6 +82,7 @@
                 </tr>
             </tfoot>
         </table>
+        </div>
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
